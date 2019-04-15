@@ -1,3 +1,5 @@
+(This project was cloned from GitHub, as it was old and no longer maintained. Changes were made to ensure that it works alongside Softwire's internet protocols)
+
 # Getting Started with the EWS Java API
 
 [![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/OfficeDev/ews-java-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
