@@ -37,27 +37,27 @@ import java.util.TimeZone;
 @RunWith(JUnit4.class)
 public class OlsonTimeZoneTest {
 
-  @Test
-  public void testOlsonTimeZoneConversion() {
-    final Map<String, String> olsonTimeZoneToMsMap = TimeZoneUtils.createOlsonTimeZoneToMsMap();
-    final String[] timeZoneIds = TimeZone.getAvailableIDs();
+    @Test
+    public void testOlsonTimeZoneConversion() {
+        final Map<String, String> olsonTimeZoneToMsMap = TimeZoneUtils.createOlsonTimeZoneToMsMap();
+        final String[] timeZoneIds = TimeZone.getAvailableIDs();
 
-    for (final String timeZoneId : timeZoneIds) {
-      final boolean america = timeZoneId.startsWith("America");
-      final boolean europe = timeZoneId.startsWith("Europe");
-      final boolean africa = timeZoneId.startsWith("Africa");
+        for (final String timeZoneId : timeZoneIds) {
+            final boolean america = timeZoneId.startsWith("America");
+            final boolean europe = timeZoneId.startsWith("Europe");
+            final boolean africa = timeZoneId.startsWith("Africa");
 
-      if (america || europe || africa) {
-        // There are a few timezones that are out of date or don't have direct microsoft mappings
-        // according to the Unicode source we use so we will only test Americas, Europe and Africa.
-        final TimeZone timeZone = TimeZone.getTimeZone(timeZoneId);
-        final OlsonTimeZoneDefinition olsonTimeZone = new OlsonTimeZoneDefinition(timeZone);
-        final String olsonTimeZoneId = olsonTimeZone.getId();
+            if ((america || europe || africa)) {
+                // There are a few timezones that are out of date or don't have direct microsoft mappings
+                // according to the Unicode source we use so we will only test Americas, Europe and Africa.
+                final TimeZone timeZone = TimeZone.getTimeZone(timeZoneId);
+                final OlsonTimeZoneDefinition olsonTimeZone = new OlsonTimeZoneDefinition(timeZone);
+                final String olsonTimeZoneId = olsonTimeZone.getId();
 
-        Assert.assertFalse("olsonTimeZoneId for " + timeZoneId + " is blank", StringUtils.isBlank(olsonTimeZoneId));
-        Assert.assertEquals(olsonTimeZoneToMsMap.get(timeZoneId), olsonTimeZoneId);
-      }
+                Assert.assertFalse("olsonTimeZoneId for " + timeZoneId + " is blank", StringUtils.isBlank(olsonTimeZoneId));
+                Assert.assertEquals(olsonTimeZoneToMsMap.get(timeZoneId), olsonTimeZoneId);
+            }
+        }
     }
-  }
 
 }
